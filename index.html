@@ -61,6 +61,32 @@ section{padding:76px 0;position:relative}
 .mnav .x{align-self:flex-end;width:40px;height:40px;border-radius:12px;background:var(--soft);font-size:22px;margin-bottom:8px}
 .mnav .btn{margin-top:14px}
 
+/* настройки */
+.gear{display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);font-weight:700;font-size:14px;flex:none}
+.gear:hover{border-color:var(--blue);color:var(--blue)}
+.gear svg{width:19px;height:19px}
+@media(max-width:960px){.gear{margin-left:auto;padding:0;width:44px;justify-content:center}.gear span{display:none}.burger{margin-left:0}}
+.sheet{position:fixed;inset:0;z-index:70;background:rgba(14,20,34,.55);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet.on{opacity:1;pointer-events:auto}
+.sheet .p{width:100%;max-width:460px;max-height:88vh;overflow:auto;background:#fff;border-radius:24px 24px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));transform:translateY(40px);transition:transform .25s}
+.sheet.on .p{transform:none}
+@media(min-width:700px){.sheet{align-items:center}.sheet .p{border-radius:24px}}
+.sheet .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sheet .hd b{font-size:20px;font-weight:800}
+.sheet .x{width:40px;height:40px;border-radius:12px;background:var(--soft);font-size:22px}
+.mi{display:flex;align-items:center;gap:14px;width:100%;padding:14px;border-radius:16px;border:1px solid var(--line);margin-bottom:8px;text-align:left;transition:border-color .2s,background .2s}
+.mi:hover{border-color:var(--blue);background:var(--blue-l)}
+.mi i{flex:none;width:44px;height:44px;border-radius:12px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;font-style:normal;font-size:20px}
+.mi b{display:block;font-size:15.5px}
+.mi small{display:block;color:var(--ink2);font-size:13px;line-height:1.35}
+.mi.buy{background:var(--ink);border-color:var(--ink);color:#fff}
+.mi.buy i{background:var(--blue);color:#fff}
+.mi.buy small{color:#b8c0d1}
+.mi.buy:hover{background:#1b2337}
+.sheet .ab{padding:4px 2px}
+.sheet .ab p{color:var(--ink2);margin-top:8px;font-size:15px}
+.sheet .back{margin-top:14px;color:var(--blue);font-weight:700}
+
 /* первый экран */
 .hero{padding:40px 0 70px;overflow:hidden}
 .hero:before{content:"";position:absolute;left:-90px;bottom:-60px;width:330px;height:330px;background:linear-gradient(135deg,transparent 46%,var(--blue) 46%,var(--blue) 54%,transparent 54%,transparent 62%,var(--ink) 62%);opacity:.95;clip-path:polygon(0 30%,100% 100%,0 100%)}
@@ -236,13 +262,16 @@ footer a{color:#fff}
     <nav class="nav"><a href="#services">Услуги</a><a href="#steps">Как работаем</a><a href="#about">О нас</a><a href="#contacts">Контакты</a></nav>
     <a class="hph" id="hPhone" href="#"></a>
     <a class="btn b" href="#req">Консультация</a>
+    <button class="gear" id="gearBtn" type="button" aria-label="Настройки"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Настройки</span></button>
     <button class="burger" id="burger" aria-label="Меню"><span></span></button>
   </div>
 </header>
 <div class="mnav" id="mnav"><div class="p"><button class="x" data-close aria-label="Закрыть">×</button>
-  <a href="#services" data-close>Услуги и цены</a><a href="#steps" data-close>Как работаем</a><a href="#about" data-close>О нас</a><a href="#req" data-close>Заявка</a><a href="#contacts" data-close>Контакты</a>
+  <a href="#services" data-close>Услуги и цены</a><a href="#steps" data-close>Как работаем</a><a href="#about" data-close>О нас</a><a href="#req" data-close>Заявка</a><a href="#contacts" data-close>Контакты</a><a href="#" data-close id="mSet">⚙ Настройки</a>
   <a class="btn w" id="mWa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Написать в WhatsApp</a>
 </div></div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shT"><div class="p" id="shBody"></div></div>
 
 <main id="top">
 <section class="hero">
@@ -451,6 +480,27 @@ $('#fWa').addEventListener('click', function () {
   var url = wa(waText(o)), w = window.open(url, '_blank'); if (!w) location.href = url;
   done(o, true, url);
 });
+
+/* настройки */
+var DEV_WA = '77476128411';
+function openSheet(html) { $('#shBody').innerHTML = html; $('#sheet').classList.add('on'); document.body.style.overflow = 'hidden'; }
+function closeSheet() { $('#sheet').classList.remove('on'); document.body.style.overflow = ''; }
+function showSettings() {
+  var buy = 'https://wa.me/' + DEV_WA + '?text=' + encodeURIComponent('Здравствуйте! Видел сайт ' + (ST.company || 'AG проект') + ' — хочу похожий сайт для своего бизнеса.');
+  openSheet('<div class="hd"><b id="shT">Настройки</b><button class="x" data-shx aria-label="Закрыть">×</button></div>' +
+    '<button class="mi" data-go="about"><i>ℹ️</i><span><b>О нас</b><small>' + esc(ST.company || '') + ' — кто мы и чем занимаемся</small></span></button>' +
+    '<button class="mi" data-go="req"><i>📝</i><span><b>Заявка на консультацию</b><small>Бесплатно подскажем, какие документы нужны</small></span></button>' +
+    '<a class="mi" href="' + esc(wa('Здравствуйте! Хочу проконсультироваться.')) + '" target="_blank" rel="noopener"><i>💬</i><span><b>Связаться с нами</b><small>WhatsApp ' + esc(ST.phones[0] || '') + '</small></span></a>' +
+    '<a class="mi buy" href="' + esc(buy) + '" target="_blank" rel="noopener"><i>🛒</i><span><b>Купить похожий сайт</b><small>Хотите такой же сайт для своего бизнеса? Пишите: 8 747 612 84 11</small></span></a>' +
+    '<a class="mi" href="admin.html"><i>🔐</i><span><b>Админка</b><small>Вход для администратора: заявки, услуги и цены</small></span></a>');
+}
+$('#sheet').addEventListener('click', function (e) {
+  if (e.target === this || e.target.closest('[data-shx]')) return closeSheet();
+  var g = e.target.closest('[data-go]'); if (g) { closeSheet(); var el = document.getElementById(g.dataset.go); if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth' }); }, 150); }
+});
+addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeSheet(); $('#mnav').classList.remove('on'); } });
+$('#gearBtn').addEventListener('click', showSettings);
+$('#mSet').addEventListener('click', function (e) { e.preventDefault(); setTimeout(showSettings, 200); });
 
 /* клики */
 document.addEventListener('click', function (e) {
